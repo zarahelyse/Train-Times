@@ -1,16 +1,28 @@
-
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDA6qjb2kMkUA3irieVaRWYKqzz-eEWdQg",
+    authDomain: "train-times-68b2b.firebaseapp.com",
+    databaseURL: "https://train-times-68b2b.firebaseio.com",
+    projectId: "train-times-68b2b",
+    storageBucket: "train-times-68b2b.appspot.com",
+    messagingSenderId: "90237365142"
+  };
+  firebase.initializeApp(config);
 
 var database = firebase.database();
 
 $("button").on("click", function(){
     event.preventDefault();
 
-    name = $("#trainName").val().trim();
-    destination = $("#trainDestination").val().trim();
-    firstTime = $("#firstTrain").val().trim();
-    frequency = $("#trainFrequency").val().trim();
+    var name = $("#trainName").val().trim();
+    var destination = $("#trainDestination").val().trim();
+    var firstTime = $("#firstTrain").val().trim();
+    var frequency = $("#trainFrequency").val().trim();
 
-    console.log(name, destination, firstTime, frequency);
+    console.log(name);
+    console.log(destination);
+    console.log(firstTime);
+    console.log(frequency);
 
     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
     console.log(firstTimeConverted);
@@ -24,7 +36,7 @@ $("button").on("click", function(){
 
     $("input").val("");
 
-    database.ref().push({
+    database.ref("/train-times-68b2b").push({
         name : name,
         destination : destination,
         firstTime : firstTime,
